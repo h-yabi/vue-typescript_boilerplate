@@ -3,11 +3,11 @@
 <head>
 <%
   // ページごとに指定
-  var title = 'top page';
-  var description = 'description';
-  var url = '';
+  var title = 'template';
+  var description = 'template page';
+  var url = 'template';
 %>
-<% include ./include/_head %>
+<% include ../include/_head %>
 
 </head>
 
@@ -15,7 +15,7 @@
 
 <div class="wrapper">
 <!-- activeにページurlを入れる -->
-<%- include('./include/_header', {active:'top'}); %>
+<%- include('../include/_header', {active:'template'}); %>
 
 <div class="contents">
   <div class="sample">
@@ -47,7 +47,7 @@
 
 
 
-<% include ./include/_footer %>
+<% include ../include/_footer %>
 </div><!-- wrapper -->
 
 

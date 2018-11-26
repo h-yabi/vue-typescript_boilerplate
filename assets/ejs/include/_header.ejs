@@ -1,6 +1,11 @@
 <!-- header - start -->
 <header class="header">
   <div class="headerInner">
+    <% if( active == 'top' ){ %>
+    <h1 class="header__logo"><a href="/"><img src="/img/common/header_logo.png" alt=""></a></h1>
+    <% }else{ %>
+    <div class="header__logo"><a href="/"><img src="/img/common/header_logo.png" alt=""></a></div>
+    <% } %>
 
   </div><!-- headerInner -->
 </header>
