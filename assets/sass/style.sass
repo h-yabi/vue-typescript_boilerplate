@@ -1,0 +1,30 @@
+@import "var/_all"
+@import "function/_all"
+@import "base/_all"
+@import "layout/_all"
+@import "module/_all"
+@import "class/_all"
+
+
+.mediaPC
+  display: block !important
+  @include sp
+    display: none !important
+
+.mediaSP
+  display: none !important
+  @include sp
+    display: block !important
+
+.show
+  display: block !important
+
+body
+  @include sp
+    -webkit-text-size-adjust: 100%
+
+.svg--fork
+  fill: red
+
+.svg--home
+  fill: skyblue

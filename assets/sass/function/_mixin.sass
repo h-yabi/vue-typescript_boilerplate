@@ -1,0 +1,65 @@
+/* ----------------- */
+/*  mixin
+/* ----------------- */
+
+/* ------------------------------------ */
+//  レスポポンシブ対応（ブレイクポイント）
+/* ------------------------------------ */
+
+$max: 1320px // PC
+$pc1200: 1200px // 1200
+$pc: 1000px // PC
+$tab: 768px // タブレット
+$spUp: 751px  // スマホより大きいサイズ
+$sp: 768px  // スマホ
+
+
+@mixin max
+  @media (min-width: ($max))
+    @content
+
+@mixin pc1200
+  @media (max-width: ($pc1200))
+    @content
+
+@mixin pc
+  @media (max-width: ($pc))
+    @content
+
+@mixin tab
+  @media (max-width: ($tab))
+    @content
+
+@mixin spUp
+  @media (min-width: ($spUp))
+    @content
+
+@mixin sp
+  @media (max-width: ($sp))
+    @content
+
+
+
+/* ------------------------------------ */
+//  関数
+/* ------------------------------------ */
+
+@mixin beforeContent($top,$right,$bottom,$left,$widh,$height)
+  position: absolute
+  top: $top
+  right: $right
+  bottom: $bottom
+  left: $left
+  width: $widh
+  height: $height
+  content: ""
+
+@mixin afterContent($top,$right,$bottom,$left,$widh,$height)
+  position: absolute
+  top: $top
+  right: $right
+  bottom: $bottom
+  left: $left
+  width: $widh
+  height: $height
+  content: ""

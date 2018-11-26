@@ -1,0 +1,121 @@
+/* ----------------- */
+/*  class
+/* ----------------- */
+
+
+/* ------------------------------------ */
+//  margin
+/* ------------------------------------ */
+
+.mgNone
+  margin: 0 !important
+
+/* ------------------------------------ */
+/* margin-top */
+
+.mtNone
+  margin-top: 0 !important
+
+.mtSmall
+  margin-top: 20px !important
+  @include sp
+    margin-top: 15px !important
+
+.mtMiddle
+  margin-top: 50px !important
+  @include sp
+    margin-top: 25px !important
+
+.mtLarge
+  margin-top: 80px !important
+  @include sp
+    margin-top: 40px !important
+
+/* ------------------------------------ */
+/* margin-bottom */
+
+.mbNone
+  margin-bottom: 0 !important
+
+.mbSmall
+  margin-bottom: 20px !important
+  @include sp
+    margin-bottom: 15px !important
+
+.mbMiddle
+  margin-bottom: 50px !important
+  @include sp
+    margin-bottom: 25px !important
+
+.mbLarge
+  margin-bottom: 80px !important
+  @include sp
+    margin-bottom: 40px !important
+
+
+/* ------------------------------------ */
+//  padding
+/* ------------------------------------ */
+
+.comPadding
+  padding: 30px
+  @include sp
+    padding: 15px
+  &-bkColor-white
+    padding: 30px
+    background: $color_white
+    @include sp
+      padding: 15px
+
+.ptNone
+  padding-top: 0 !important
+  &-sp
+    padding-top: 0 !important
+
+.prNone
+  padding-right: 0 !important
+  &-sp
+    padding-right: 0 !important
+
+.pbNone
+  padding-bottom: 0 !important
+  &-sp
+    padding-bottom: 0 !important
+
+.plNone
+  padding-left: 0 !important
+  &-sp
+    padding-left: 0 !important
+
+
+/* ------------------------------------ */
+//  font-weight
+/* ------------------------------------ */
+.bold
+  font-weight: bold
+
+
+/* ------------------------------------ */
+//  文字の配置（左、中央、右）
+/* ------------------------------------ */
+.center
+  text-align: center
+
+.right
+  text-align: right
+
+.left
+  text-align: left
+
+
+/* ------------------------------------ */
+//  float
+/* ------------------------------------ */
+.f-left
+  float: left
+
+.f-right
+  float: right
+
+.overf
+  overflow: hidden

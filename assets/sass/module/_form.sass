@@ -1,0 +1,112 @@
+/* ----------------- */
+/*  form
+/* ----------------- */
+
+input[type="submit"]
+ -webkit-appearance: none
+
+input, textarea, select
+  display: block
+  margin: 0
+  padding: 0
+  letter-spacing: 0
+  vertical-align: bottom
+
+select::-ms-expand
+  display: none
+
+input[type="checkbox"]
+  display: none
+
+input[type="radio"]
+  display: none
+
+.checkbox
+  display: flex
+  flex-wrap: wrap
+  margin: 0 0 30px
+  @include spUp
+    max-height: 380px
+    overflow-y: scroll
+    overflow-x: hidden
+  dt
+    width: 100%
+    margin: 30px 0
+    padding: 13px 15px
+    background: #F1F1F1
+    font-size: 15px
+    &:first-of-type
+      margin-top: 0
+    @include sp
+      margin: 25px 0 10px
+  dd
+    float: left
+    width: auto
+    margin: 0 0 20px 30px
+    border: 1px solid #E7E7E7
+    box-sizing: border-box
+    border-radius: 30px
+    font-size: 16px
+    @include sp
+      width: 31%
+      margin: 10px 0 0 2%
+  .select
+    background: #B2D4F9
+    border-radius: 30px
+    label
+      color: #225ba6
+  .checkbox__service-title
+    margin: 20px 0 0
+    padding: 0
+    border: 1px solid #e7e7e7
+    border-radius: 30px
+    font-size: 15px
+    font-weight: bold
+    @include spUp
+      margin: 25px 0 0
+    label
+      padding-left: 55px
+      color: #333
+  .checkbox__service-text
+    width: 100%
+    margin: 0
+    padding: 5px 0 10px
+    border: 0
+    border-bottom: 1px solid #DCDCDC
+    border-radius: 0
+    font-size: 13px
+    line-height: 1.7
+    @include spUp
+      padding: 5px 0 15px
+
+.checkbox-prefectures
+  @include spUp
+    border: 2px solid #ccc
+    border-radius: 5px
+
+
+.search-form__checkbox label:after
+    background-color: #ffffff
+
+input[type=checkbox]:checked + label:before,
+input[type=radio]:checked + label:before
+    opacity: 1
+    z-index: 1
+    border-right: 2px solid $color_white
+    border-bottom: 2px solid $color_white
+
+input[type=checkbox]:checked + label:after,
+input[type=radio]:checked + label:after
+  border: 0
+
+.searchFormWrap
+  display: none
+  position: absolute
+  right: 0
+  left: 0
+  width: 100%
+  max-width: 980px
+  margin: 0 auto
+  background: #fff
+  @include sp
+    background-color: rgba(255,255,255,0.4)

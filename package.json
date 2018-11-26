@@ -1,0 +1,37 @@
+{
+  "name": "gulp_ts_sample",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "ts-build": "gulp ts-build"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "browser-sync": "^2.26.3",
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^6.0.0",
+    "gulp-clean-css": "^4.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-ejs": "^3.3.0",
+    "gulp-imagemin": "^5.0.3",
+    "gulp-load-plugins": "^1.5.0",
+    "gulp-notify": "^3.2.0",
+    "gulp-plumber": "^1.2.0",
+    "gulp-rename": "^1.4.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-svg-sprite": "^1.5.0",
+    "gulp-uglify": "^3.0.1",
+    "imagemin-mozjpeg": "^8.0.0"
+  },
+  "devDependencies": {
+    "gulp-typescript": "^5.0.0-alpha.3",
+    "imagemin-pngquant": "^6.0.0",
+    "lodash": "^4.17.11",
+    "minimatch": "^3.0.4",
+    "typescript": "^3.1.6"
+  }
+}
