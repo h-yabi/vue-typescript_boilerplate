@@ -15,6 +15,7 @@ const pngquant = require("imagemin-pngquant");
 const mozjpeg = require('imagemin-mozjpeg');
 const ts = require('gulp-typescript');
 const tsProject = ts.createProject('tsconfig.json');
+var aigis = require('gulp-aigis');
 
 gulp.task('clean', function() {
   del(['dist'])
@@ -37,7 +38,7 @@ gulp.task('bs-reload', function () {
 });
 
 gulp.task('sass', function() {
-  gulp.src('assets/sass/*.sass')
+  gulp.src(['assets/sass/*.sass'])
     .pipe(plumber({
       errorHandler: notify.onError("Error: <%= error.message %>") //<-
     }))
@@ -48,6 +49,11 @@ gulp.task('sass', function() {
         cascade: false
     }))
     .pipe(gulp.dest('dist/css'));
+});
+
+gulp.task('aigis', function() {
+  gulp.src('./aigis_config.yml')
+    .pipe(aigis());
 });
 
 gulp.task('js', function() {
@@ -125,12 +131,13 @@ gulp.task('ts-build', () => {
 });
 
 // src 配下の *.html, *.css ファイルが変更されたリロード。
-gulp.task('default', ['browser-sync', 'sass', 'ejs', 'img', 'js', 'imagemin', 'svg-sprite', 'ts-build'], function () {
+gulp.task('default', ['browser-sync', 'sass', 'aigis',  'ejs', 'img', 'js', 'imagemin', 'svg-sprite', 'ts-build'], function () {
   gulp.watch('assets/**/*.sass', ['sass','bs-reload']);
   gulp.watch('assets/**/*.ejs', ['ejs','bs-reload']);
   gulp.watch('assets/**/*.js', ['js','bs-reload']);
   gulp.watch('assets/**/*.ts', ['ts-build','bs-reload']);
   gulp.watch('assets/**/*.**', ['img']);
+  gulp.watch('assets/**/*.**', ['aigis']);
   gulp.watch('assets/**/*.**', ['imagemin']);
   gulp.watch('assets/**/*.**', ['svg-sprite']);
   // gulp.watch(["監視したいファイル"], ["行いたいタスク"])
