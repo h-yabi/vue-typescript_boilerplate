@@ -134,12 +134,12 @@ gulp.task('ts-build', () => {
 
 gulp.task('production', function (callback) {
   // 順次実行したいものを左から順に指定する
-  runSequence('clean', 'aigis', 'sass', 'ejs', 'img', 'js', 'svg-sprite', 'imagemin', 'ts-build', callback);
+  runSequence('clean', 'aigis', 'sass', 'ejs', 'img', 'js', 'svg-sprite', 'imagemin', 'ts-build', 'browser-sync', callback);
 });
 
 
 // src 配下の *.html, *.css ファイルが変更されたリロード。
-gulp.task('default', ['browser-sync', 'production'], function () {
+gulp.task('default', ['production'], function () {
   gulp.watch('assets/**/*.sass', ['sass', 'bs-reload']);
   gulp.watch('assets/**/*.ejs', ['ejs', 'bs-reload']);
   gulp.watch('assets/**/*.js', ['js', 'bs-reload']);
