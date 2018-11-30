@@ -31,6 +31,7 @@ gulp.task('aigis', function () {
 
 gulp.task('browser-sync', function () {
   return browserSync.init({
+    port: 5000,
     server: {
       baseDir: "dist",
       index: "index.html"
@@ -133,7 +134,7 @@ gulp.task('ts-build', () => {
 
 gulp.task('production', function (callback) {
   // 順次実行したいものを左から順に指定する
-  runSequence('clean', 'aigis', 'sass', 'ejs', 'img', 'js', 'imagemin', 'svg-sprite', 'ts-build', callback);
+  runSequence('clean', 'aigis', 'sass', 'ejs', 'img', 'js', 'svg-sprite', 'imagemin', 'ts-build', callback);
 });
 
 
