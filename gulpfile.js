@@ -134,7 +134,7 @@ gulp.task('ts-build', () => {
 
 gulp.task('production', function (callback) {
   // 順次実行したいものを左から順に指定する
-  runSequence('clean', 'aigis', 'sass', 'ejs', 'img', 'js', 'svg-sprite', 'imagemin', 'ts-build', 'browser-sync', callback);
+  runSequence('clean', ['aigis', 'sass', 'ejs', 'img', 'js', 'svg-sprite', 'ts-build', 'browser-sync'], callback);
 });
 
 
@@ -146,7 +146,7 @@ gulp.task('default', ['production'], function () {
   gulp.watch('assets/**/*.ts', ['ts-build', 'bs-reload']);
   gulp.watch('assets/**/*.**', ['img', 'bs-reload']);
   gulp.watch('assets/**/*.**', ['aigis']);
-  gulp.watch('assets/**/*.**', ['imagemin']);
+  // gulp.watch('assets/**/*.**', ['imagemin']);
   gulp.watch('assets/**/*.**', ['svg-sprite']);
   // gulp.watch(["監視したいファイル"], ["行いたいタスク"])
 });
