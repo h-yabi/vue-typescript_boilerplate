@@ -1,5 +1,5 @@
 const gulp = require('gulp');
-const browserSync = require('browser-sync').create();
+const browserSync = require("browser-sync");
 const sass = require('gulp-sass');
 const ejs = require('gulp-ejs');
 const rename = require('gulp-rename');
@@ -15,7 +15,6 @@ const pngquant = require("imagemin-pngquant");
 const ts = require('gulp-typescript');
 const tsProject = ts.createProject('tsconfig.json');
 const aigis = require('gulp-aigis');
-const runSequence = require('run-sequence');
 
 gulp.task('clean', function () {
   return del(['dist'])
@@ -27,20 +26,6 @@ gulp.task('clean', function () {
 gulp.task('aigis', function () {
   return gulp.src('./aigis_config.yml')
     .pipe(aigis());
-});
-
-gulp.task('browser-sync', function () {
-  return browserSync.init({
-    port: 5000,
-    server: {
-      baseDir: "dist",
-      index: "index.html"
-    }
-  });
-});
-
-gulp.task('bs-reload', function () {
-  return browserSync.reload();
 });
 
 gulp.task('sass', function () {
@@ -132,21 +117,47 @@ gulp.task('ts-build', () => {
     .js.pipe(gulp.dest('dist/js'));
 });
 
-gulp.task('production', function (callback) {
-  // 順次実行したいものを左から順に指定する
-  runSequence('clean', ['aigis', 'sass', 'ejs', 'img', 'js', 'svg-sprite', 'ts-build', 'browser-sync'], callback);
-});
-
-
-// src 配下の *.html, *.css ファイルが変更されたリロード。
-gulp.task('default', ['production'], function () {
-  gulp.watch('assets/**/*.sass', ['sass', 'bs-reload']);
-  gulp.watch('assets/**/*.ejs', ['ejs', 'bs-reload']);
-  gulp.watch('assets/**/*.js', ['js', 'bs-reload']);
-  gulp.watch('assets/**/*.ts', ['ts-build', 'bs-reload']);
-  gulp.watch('assets/**/*.**', ['img', 'bs-reload']);
-  gulp.watch('assets/**/*.**', ['aigis']);
+gulp.task('watch', function () {
+  gulp.watch('assets/**/*.sass', gulp.task('sass'));
+  gulp.watch('assets/**/*.ejs', gulp.task('ejs'));
+  gulp.watch('assets/**/*.js', gulp.task('js'));
+  gulp.watch('assets/**/*.ts', gulp.task('ts-build'));
+  gulp.watch(['assets/**/*.png', 'assets/**/*.gif', 'assets/**/*.jpg', 'assets/**/*.jpeg', 'assets/**/*.svg'], gulp.task('img'));
+  gulp.watch('assets/**/*.**', gulp.task('aigis'));
   // gulp.watch('assets/**/*.**', ['imagemin']);
-  gulp.watch('assets/**/*.**', ['svg-sprite']);
+  gulp.watch('assets/**/*.svg', gulp.task('svg-sprite'));
   // gulp.watch(["監視したいファイル"], ["行いたいタスク"])
 });
+
+gulp.task('serve', gulp.series(
+  gulp.parallel(
+    'watch',
+    function () {
+      browserSync({
+        notify: false,
+        port: 5000,
+        server: {
+          baseDir: 'dist',
+          index: "index.html"
+        }
+      });
+      gulp.watch("dist/**").on('change', browserSync.reload);
+    }
+  )
+));
+
+gulp.task("default", gulp.series(
+  'clean',
+  gulp.parallel(
+    // 順次実行したいものを上から順に指定する
+    'aigis',
+    'sass',
+    'ejs',
+    'img',
+    'js',
+    'svg-sprite',
+    'ts-build'
+  ),
+  'serve'
+));
+
