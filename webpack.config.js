@@ -4,9 +4,12 @@ module.exports = {
   mode: 'development',
 
   // メインとなるJavaScriptファイル（エントリーポイント）
-  entry: './assets/js/vue.ts',
+  entry: {
+    main: './assets/js/main.ts',
+    sample: './assets/js/sample.ts'
+  },
   output: {
-    filename: "js/vue_ts.js"
+    filename: "js/[name].js"
   },
   module: {
     rules: [
