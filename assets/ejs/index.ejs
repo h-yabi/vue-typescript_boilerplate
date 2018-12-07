@@ -37,9 +37,16 @@
 
 
   </div>
-  <p>sample</p>
 
-
+<div id="app">
+  {{ message }}
+  <div class="button">
+    <button @click="show = !show">ボタン</button>
+  </div><!-- button -->
+  <div v-show="show">
+    test
+  </div>
+</div>
 
 </div><!-- contents -->
 
@@ -54,6 +61,7 @@
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="/js/style.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="js/vue_ts.js"></script>
 </body>
 </html>

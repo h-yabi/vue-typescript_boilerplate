@@ -15,6 +15,17 @@ const pngquant = require("imagemin-pngquant");
 const ts = require('gulp-typescript');
 const tsProject = ts.createProject('tsconfig.json');
 const aigis = require('gulp-aigis');
+const webpackStream = require("webpack-stream");
+const webpack = require("webpack");
+const webpackConfig = require("./webpack.config.js");
+
+
+gulp.task("webpack", function () {
+  return webpackStream(webpackConfig, webpack)
+    .pipe(plumber())
+    .pipe(gulp.dest("dist"))
+    .pipe(browserSync.reload({ stream: true }));
+});
 
 gulp.task('clean', function () {
   return del(['dist'])
@@ -111,21 +122,23 @@ gulp.task('imagemin', function () {
     .pipe(gulp.dest('dist/img'));
 });
 
-gulp.task('ts-build', () => {
-  return tsProject.src()
-    .pipe(tsProject())
-    .js.pipe(gulp.dest('dist/js'));
-});
+// gulp.task('ts-build', () => {
+//   return tsProject.src()
+//     .pipe(tsProject())
+//     .js.pipe(gulp.dest('dist/js'));
+// });
 
 gulp.task('watch', function () {
   gulp.watch('assets/**/*.sass', gulp.task('sass'));
   gulp.watch('assets/**/*.ejs', gulp.task('ejs'));
   gulp.watch('assets/**/*.js', gulp.task('js'));
-  gulp.watch('assets/**/*.ts', gulp.task('ts-build'));
+  // gulp.watch('assets/**/*.ts', gulp.task('ts-build'));
+  gulp.watch("assets/**/*.ts", gulp.task("webpack"));
   gulp.watch(['assets/**/*.png', 'assets/**/*.gif', 'assets/**/*.jpg', 'assets/**/*.jpeg', 'assets/**/*.svg'], gulp.task('img'));
-  gulp.watch('assets/**/*.**', gulp.task('aigis'));
+  // gulp.watch('assets/**/*.**', gulp.task('aigis'));
   // gulp.watch('assets/**/*.**', ['imagemin']);
   gulp.watch('assets/**/*.svg', gulp.task('svg-sprite'));
+
   // gulp.watch(["監視したいファイル"], ["行いたいタスク"])
 });
 
@@ -150,13 +163,14 @@ gulp.task("default", gulp.series(
   'clean',
   gulp.parallel(
     // 順次実行したいものを上から順に指定する
-    'aigis',
+    // 'aigis',
     'sass',
     'ejs',
     'img',
     'js',
-    'svg-sprite',
-    'ts-build'
+    'webpack',
+    'svg-sprite'
+    // 'ts-build'
   ),
   'serve'
 ));
