@@ -7,4 +7,3 @@ var app = new Vue({
     show: true
   }
 })
-
