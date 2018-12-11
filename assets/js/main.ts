@@ -5,5 +5,13 @@ var app = new Vue({
   data: {
     message: 'Hello Vue!',
     show: true
+  },
+  methods: {
+    change: function () {
+      this.show = !this.show
+    }
   }
 })
+
+let count: number = 123456;
+console.log(count)

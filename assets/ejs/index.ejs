@@ -41,8 +41,11 @@
 <div id="app">
   {{ message }}
   <div class="button">
-    <button @click="show = !show">ボタン</button>
+    <button @click="change">ボタン</button>
   </div><!-- button -->
+  <div v-show="show">
+    test
+  </div>
   <div v-show="show">
     test
   </div>
@@ -59,6 +62,6 @@
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="js/sample.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>
