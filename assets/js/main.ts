@@ -15,3 +15,12 @@ var app = new Vue({
 
 let count: number = 123456;
 console.log(count)
+
+$(window).on('resize', function () {
+  alert('a')
+});
+
+
+var ComponentA = {
+  
+}
