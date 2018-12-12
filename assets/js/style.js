@@ -1,4 +1,4 @@
-var Foo = { template: '<div>sample</div>' }
+var Foo = { template: '#compo-member' }
 var Bar = { template: '<div>bar</div>' }
 
 var routes = [
