@@ -15,16 +15,16 @@ var app = new Vue({
 }).$mount('#app')
 
 
-$(function() {
 
 
+$(function () {
 
-    var Acoordion = function(el) {
+    var Acoordion = function (el) {
         this.el = $(el);
     };
-    Acoordion.prototype.fn = function() {
+    Acoordion.prototype.fn = function () {
         var that = this;
-        this.el.on('click', function() {
+        this.el.on('click', function () {
             if ($(this).hasClass('active')) {
                 $(this).removeClass('active');
                 $(this).next().hide();
@@ -42,9 +42,9 @@ $(function() {
             }).fadeIn();
         });
     };
-    Acoordion.prototype.bodyActive = function() {
+    Acoordion.prototype.bodyActive = function () {
         var that = this;
-        this.el.on('click', function() {
+        this.el.on('click', function () {
             if ($('body').hasClass('active')) {
                 $('body').removeClass('active');
                 return false;
@@ -71,14 +71,14 @@ $(function() {
 
 
 
-    var AccordClose = function(el, closeEl, closeElParent) {
+    var AccordClose = function (el, closeEl, closeElParent) {
         this.el = $(el);
         this.closeEl = $(closeEl);
         this.closeElParent = $(closeElParent);
     };
-    AccordClose.prototype.fn = function() {
+    AccordClose.prototype.fn = function () {
         var that = this;
-        this.el.on('click', function() {
+        this.el.on('click', function () {
             $('body').removeClass('active');
             that.closeEl.hide();
             that.closeElParent.removeClass('active');
@@ -86,9 +86,9 @@ $(function() {
             that.closeElParent.parent('.serviceListParent').removeClass('active');
         });
     };
-    AccordClose.prototype.modalBk = function() {
+    AccordClose.prototype.modalBk = function () {
         var that = this;
-        this.el.on('click', function() {
+        this.el.on('click', function () {
             $('.js-modalBk').fadeOut();
         });
     };
@@ -113,13 +113,13 @@ $(function() {
 
 
 
-    var ScrollPosReset = function(el, hideEl) {
+    var ScrollPosReset = function (el, hideEl) {
         this.el = $(el);
         this.hideEl = $(hideEl);
     };
-    ScrollPosReset.prototype.defaultFn = function() {
+    ScrollPosReset.prototype.defaultFn = function () {
         var that = this;
-        that.el.on('click', function() {
+        that.el.on('click', function () {
             that.hideEl.fadeOut();
             $('body, .searchChoice__select').removeClass('active');
 
@@ -144,12 +144,12 @@ $(function() {
 
 
 
-    var checkItem = function() {
+    var checkItem = function () {
         var $checkItemParent = $('.checkbox dt, .checkbox dd, .flag');
         var $checkItem = $('.checkItem');
         var $decideBtn = $('.checkItemSlectBtn-decision'); // 決定ボタン
 
-        $checkItem.on('click', function() {
+        $checkItem.on('click', function () {
             $(this).parents('.checkbox').find('input[type="radio"]').parent().removeClass('select');
             if ($(this).parent().hasClass('select')) {
                 $(this).parent().removeClass('select');
@@ -160,13 +160,13 @@ $(function() {
 
 
         // リセットボタンをクリック
-        var ResetBtn = function(resetBtn, defaultText) {
+        var ResetBtn = function (resetBtn, defaultText) {
             this.resetBtn = $(resetBtn);
             this.defaultText = defaultText;
         };
-        ResetBtn.prototype.fn = function() {
+        ResetBtn.prototype.fn = function () {
             var that = this;
-            this.resetBtn.on('click', function() {
+            this.resetBtn.on('click', function () {
                 var index = $('.productAndServiceTab').find('.active').index();
                 $('.productAndServiceTab__inner > li').eq(index).find('dt, dd, .flag').removeClass('select').find('.checkItem').prop("checked", false);
                 console.log(index);
@@ -185,15 +185,15 @@ $(function() {
 
 
         // 決定ボタンをクリック
-        var DecideBtn = function(checkParent, defaultText) {
+        var DecideBtn = function (checkParent, defaultText) {
             this.checkParent = $(checkParent);
             this.defaultText = defaultText;
         };
-        DecideBtn.prototype.defaultFn = function(tabParent) {
+        DecideBtn.prototype.defaultFn = function (tabParent) {
             var that = this;
-            this.checkParent.find($decideBtn).on('click', function() {
+            this.checkParent.find($decideBtn).on('click', function () {
                 var $this = $(this);
-                var $val = that.checkParent.find('.checkItem:checked').map(function() {
+                var $val = that.checkParent.find('.checkItem:checked').map(function () {
                     return $(this).val();
                 }).get();
 
@@ -203,9 +203,9 @@ $(function() {
                 }
             });
         };
-        DecideBtn.prototype.productAndService = function(tabParent) {
+        DecideBtn.prototype.productAndService = function (tabParent) {
             var that = this;
-            this.checkParent.find($decideBtn).on('click', function() {
+            this.checkParent.find($decideBtn).on('click', function () {
                 var $this = $(this);
                 var tabActive = $this.parents('.checkItemWrap').find('.productAndServiceTab__inner').find('li.active');
                 var tabIndex = tabActive.index();
@@ -222,7 +222,7 @@ $(function() {
                 }
 
                 // 『 取り扱い商品・サービスから絞り込む 』 のテキストをvalに置き換え
-                var $val = that.checkParent.find('.checkItem:checked').map(function() {
+                var $val = that.checkParent.find('.checkItem:checked').map(function () {
                     return $(this).val();
                 }).get();
                 $(this).parents('.searchChoice__inner').find('.searchChoice__select').text($val);
@@ -241,14 +241,14 @@ $(function() {
 
 
 
-    var choiceTab = function() {
+    var choiceTab = function () {
         var $tabList = $('.productAndService > li');
         var $tabListEl = $('.checkItemWrap');
         var $modalTabParent = $('.productAndServiceTab');
         var $modalTab = $modalTabParent.find('li');
         var $tabEl = $('.productAndServiceTab__inner > li');
 
-        $tabList.on('click', function() {
+        $tabList.on('click', function () {
             $('body').addClass('active');
             var index = $(this).index();
             $('.checkItemWrap-productAndService').show();
@@ -259,7 +259,7 @@ $(function() {
             $tabEl.eq(index).addClass('active');
         });
 
-        $modalTab.on('click', function() {
+        $modalTab.on('click', function () {
             var index = $(this).index();
             // console.log(index);
             $modalTab.removeClass('active');
@@ -269,20 +269,20 @@ $(function() {
         });
     }();
 
-    var choiceAlphabet = function() {
-        $('.choiceAlphabet').on('click', function() {
+    var choiceAlphabet = function () {
+        $('.choiceAlphabet').on('click', function () {
             $(this).next().show();
         });
-        $('.alphabetList a').on('click', function() {
+        $('.alphabetList a').on('click', function () {
             $('.alphabetList a').removeClass('active');
             $(this).addClass('active');
             $('.checkItemWrap').addClass('active');
         });
-        AlphabetClose = function(el) {
+        AlphabetClose = function (el) {
             this.el = $(el);
         };
-        AlphabetClose.prototype.click = function() {
-            this.el.on('click', function() {
+        AlphabetClose.prototype.click = function () {
+            this.el.on('click', function () {
                 $('.checkItemWrap').removeClass('active');
                 $('.alphabetWrap').hide();
             });
@@ -295,12 +295,12 @@ $(function() {
     }();
 
 
-    var MoreShowBtn = function(el) {
+    var MoreShowBtn = function (el) {
         this.el = $(el);
     };
-    MoreShowBtn.prototype.showEl = function() {
+    MoreShowBtn.prototype.showEl = function () {
         var that = this;
-        $('.btn-moreShow').on('click', function() {
+        $('.btn-moreShow').on('click', function () {
             $(this).hide();
             that.el.fadeIn();
         });
