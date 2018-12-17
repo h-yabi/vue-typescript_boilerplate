@@ -1,46 +1,56 @@
-// let message: String = '';
-// message = "TypeScript World"
-// console.log("Hello!" + message);
-
-// let count: number = 123;
-// console.log(count)
-
-class User {
-  constructor(private _name: string) {
-  }
-
-  //ゲッター
-  //ゲッターは値を排出します。
-  get name() {
-    return this._name;
-  }
-
-  //セッター
-  set name(value: string) {
-    this._name = value;
+class Animal {
+  constructor(public type: string) {
+    this.type = type;
   }
 }
 
-var taro = new User("Taro");
-console.log(taro.name); //Taroが出力される。
-taro.name = "yamada"; //セッターを使ってyamadaを代入。
-console.log(taro.name); //yamadaが出力される。
-
-
-
-interface Result {
-  a: number;
-  b: number;
+class Cat extends Animal {
+  constructor(public name: string) {
+    super("Cat");
+    this.name = name;
+  }
 }
 
-//sum(result: Result)と書くことで引数resultは必ずaとb持たなければならない。
-function sum(result: Result) {
-  return result.a + result.b;
+var o1 = new Cat("Mii-chan");
+console.log(o1.type);        // Cat
+console.log(o1.name);        // Mii-chan
+
+
+class Acoordion {
+  constructor(public el: HTMLElement) {
+  }
+  public fn(): void {
+    $(this.el).on('click', function () {
+      $(this).next().show();
+    });
+  }
 }
 
-var result = {
-  a: 80,
-  b: 20
-};
+var yabiku = document.getElementById('test');
+var sample = new Acoordion(yabiku);
+console.log(yabiku)
+sample.fn();
 
-console.log(sum(result)); //50が出力される。
+// var Acoordion = function (el) {
+//   this.el = $(el);
+// };
+// Acoordion.prototype.fn = function () {
+//   var that = this;
+//   this.el.on('click', function () {
+//     if ($(this).hasClass('active')) {
+//       $(this).removeClass('active');
+//       $(this).next().hide();
+//       $(this).parent().removeClass('active');
+//       $('.js-modalBk').css({
+//         height: 'auto'
+//       }).fadeOut();
+//       return false;
+//     }
+//     $(this).addClass('active');
+//     $(this).next().show();
+//     $(this).parent().addClass('active');
+//     $('.js-modalBk').css({
+//       height: '100vh'
+//     }).fadeIn();
+//   });
+// };
