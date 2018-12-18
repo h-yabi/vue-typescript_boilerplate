@@ -16,41 +16,27 @@ console.log(o1.type);        // Cat
 console.log(o1.name);        // Mii-chan
 
 
+
+
 class Acoordion {
-  constructor(public el: HTMLElement) {
+  constructor(public el: HTMLCollection) {
   }
-  public fn(): void {
+  public showHide(): void {
     $(this.el).on('click', function () {
-      $(this).next().show();
+      if ($(this).hasClass('active')) {
+        $(this).removeClass('active').next().hide();
+        return;
+      }
+      $(this).addClass('active').next().show();
+    });
+  }
+  public slideDownUp(): void {
+    $(this.el).on('click', function () {
+      $(this).next().slideToggle();
     });
   }
 }
 
-var yabiku = document.getElementById('test');
-var sample = new Acoordion(yabiku);
-console.log(yabiku)
-sample.fn();
-
-// var Acoordion = function (el) {
-//   this.el = $(el);
-// };
-// Acoordion.prototype.fn = function () {
-//   var that = this;
-//   this.el.on('click', function () {
-//     if ($(this).hasClass('active')) {
-//       $(this).removeClass('active');
-//       $(this).next().hide();
-//       $(this).parent().removeClass('active');
-//       $('.js-modalBk').css({
-//         height: 'auto'
-//       }).fadeOut();
-//       return false;
-//     }
-//     $(this).addClass('active');
-//     $(this).next().show();
-//     $(this).parent().addClass('active');
-//     $('.js-modalBk').css({
-//       height: '100vh'
-//     }).fadeIn();
-//   });
-// };
+var className = document.getElementsByClassName("test");
+var sample = new Acoordion(className);
+sample.showHide();
